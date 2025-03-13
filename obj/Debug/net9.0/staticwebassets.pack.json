@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "C:\\DevProjects\\Alpha\\WebApp\\wwwroot\\css\\output.css",
+      "PackagePath": "staticwebassets\\css\\output.css"
+    },
+    {
+      "Id": "C:\\DevProjects\\Alpha\\WebApp\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
       "Id": "C:\\DevProjects\\Alpha\\WebApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

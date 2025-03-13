@@ -31,3 +31,8 @@ C:\DevProjects\Alpha\WebApp\obj\Debug\net9.0\refint\WebApp.dll
 C:\DevProjects\Alpha\WebApp\obj\Debug\net9.0\WebApp.pdb
 C:\DevProjects\Alpha\WebApp\obj\Debug\net9.0\WebApp.genruntimeconfig.cache
 C:\DevProjects\Alpha\WebApp\obj\Debug\net9.0\ref\WebApp.dll
+C:\DevProjects\Alpha\WebApp\bin\Debug\net9.0\package-lock.json
+C:\DevProjects\Alpha\WebApp\bin\Debug\net9.0\package.json
+C:\DevProjects\Alpha\WebApp\obj\Debug\net9.0\WebApp.sourcelink.json
+C:\DevProjects\Alpha\WebApp\obj\Debug\net9.0\compressed\fxk5v8r3wx-9ft5wzmoyg.gz
+C:\DevProjects\Alpha\WebApp\obj\Debug\net9.0\compressed\4j7pd1h8bg-i7p1vbwebk.gz
