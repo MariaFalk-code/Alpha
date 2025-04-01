@@ -10,8 +10,8 @@ bin/
 obj/
 out/
 
-# Tailwind
-wwwroot/css/output.css
+# Tailwind CSS -commented out to allow for proper grading without having to install Tailwind.
+# wwwroot/css/output.css
 
 # NuGet
 *.nupkg
