@@ -13,23 +13,13 @@
     <script type="importmap"></script>
 </head>
 <body>
-    <div>
-    <header>
-        HEADER
-    </header>
-		<aside>
-			ASIDE
-		</aside>
+    
     <div>
         <main role="main">
             @RenderBody()
         </main>
     </div>
 
-	<footer>
-		FOOTER
-    </footer>
-    </div>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
