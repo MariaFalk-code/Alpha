@@ -12,10 +12,11 @@
     <title>@ViewData["Title"] Alpha - Project Management System</title>
     <script type="importmap"></script>
 </head>
-<body>
+<body class=" min-h-screen flex items-center justify-center bg-slate-300 dark:bg-slate-950">
     
     <div>
         <main role="main">
+            @await Html.PartialAsync("_LogoPartial")
             @RenderBody()
         </main>
     </div>
