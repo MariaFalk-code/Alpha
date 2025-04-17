@@ -14,3 +14,33 @@
         @apply font-sans;
     }
 }
+
+@layer components {
+    /* Custom Components */
+    .btn-primary {
+        @apply appearance-none;
+        @apply rounded-xl bg-blue-accent py-2.5 w-full border border-transparent text-center text-sm text-white transition-all shadow-md dark:glow-white 
+        hover:shadow-lg focus:bg-blue-focus active:shadow-none hover:bg-blue-focus 
+        active:bg-blue-focus focus:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none;
+    }
+    .text-input {
+        @apply appearance-none;
+        @apply w-full bg-transparent placeholder:text-slate-500 text-slate-700 text-sm border border-slate-200 rounded-xl px-3 py-2 transition duration-300 ease-in-out focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow;
+    }
+
+    .checkbox {
+        @apply appearance-none;
+        @apply h-4 w-4 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-blue-accent checked:border-blue-accent;
+    }
+
+    .checkmark {
+        @apply text-white opacity-0 pointer-events-none peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+    }
+}
+
+/* Custom Utilities */
+@layer utilities {
+    .glow-white {
+        @apply shadow-[0_4px_16px_rgba(255,255,255,0.3)];
+    }
+}

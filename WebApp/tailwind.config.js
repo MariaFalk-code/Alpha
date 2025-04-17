@@ -6,7 +6,8 @@ module.exports = {
       extend: {
           colors: {
               blue: {
-                  accent: 'hsl(209, 100.00%, 58.80%)'
+                  accent: 'hsl(209, 100.00%, 58.80%)',
+                  focus: 'hsl(209, 100.00%, 35.10%)'
               },
           },
           fontFamily: {

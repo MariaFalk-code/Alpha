@@ -1,0 +1,26 @@
+﻿@{
+	Layout = "_Layout_Centered";
+	ViewData["Title"] = "Welcome";
+}
+
+<div class="flex flex-col items-center justify-center w-max p-6">
+
+    @await Html.PartialAsync("_LargeLogoPartial")
+
+    <div class="flex items-center justify-center mt-2">
+        <span class="text-lg font-sans font-normal text-slate-950 dark:text-white">
+            project management system
+        </span>
+    </div>
+    <div class="flex items-center justify-center w-full mt-6">
+        <button data-dialog-target="sign-in-dialog" class="btn-primary" type="button">
+            Sign In
+        </button>
+        <button data-dialog-target="register-dialog" class="btn-primary ml-2" type="button">
+            Register
+        </button>
+    </div>
+</div>
+
+@await Html.PartialAsync("_LoginModal")
+
