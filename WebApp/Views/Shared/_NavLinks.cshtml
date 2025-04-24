@@ -1,0 +1,26 @@
+﻿<nav class="flex flex-col items-start justify-center text-blue-accent">
+    <div>
+        <a class="@(Context.Request.Path == "/admin/dashboard" ? "active": "")" asp-controller="Admin" asp-action="Dashboard">
+            <i class="fa-duotone fa-solid fa-chart-tree-map"></i>
+            <span>Dashboard</span>
+        </a>
+    </div>
+    <div>
+        <a class="@(Context.Request.Path == "/admin/projects" ? "active": "")" asp-controller="Admin" asp-action="Projects">
+            <i class="fa-duotone fa-solid fa-briefcase"></i>
+            <span>Projects</span>
+        </a>
+    </div>
+    <div>
+        <a class="@(Context.Request.Path == "/admin/members" ? "active": "")" asp-controller="Admin" asp-action="Members">
+            <i class="fa-duotone fa-solid fa-user-group"></i>
+            <span>Members</span>
+        </a>
+    </div>
+    <div>
+        <a class="@(Context.Request.Path == "/admin/clients" ? "active": "")" asp-controller="Admin" asp-action="Clients">
+            <i class="fa-duotone fa-solid fa-handshake"></i>
+            <span>Clients</span>
+        </a>
+    </div>
+</nav>

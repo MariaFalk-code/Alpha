@@ -10,25 +10,22 @@
     @* Material Tailwind Stable Version JS (v2.3.2) *@
     <script src="https://unpkg.com/@@material-tailwind/html@2.3.2/scripts/dialog.js" type="module" defer></script>
     <title>@ViewData["Title"] Alpha - Project Management System</title>
-    <script type="importmap"></script>
+    @* <script type="importmap"></script> *@
 </head>
-<body>
-    <div>
-    <header>
-        HEADER
-    </header>
-		<aside>
-			ASIDE
-		</aside>
-    <div>
-        <main role="main">
-            @RenderBody()
-        </main>
-    </div>
-
-	<footer>
-		FOOTER
-    </footer>
+<body class="min-h-screen bg-slate-200 dark:bg-slate-950">
+    <div class="grid grid-cols-[auto_1fr] min-h-screen">
+        <aside>
+            @await Html.PartialAsync("_LogoPartial")
+            @await Html.PartialAsync("_NavLinks")
+        </aside>
+        <div class="grid grid-rows-[auto_1fr] h-screen">
+            <header>
+                HEADER
+            </header>
+            <main role="main" class="overflow-y-auto">
+                @RenderBody()
+            </main>
+        </div>
     </div>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
