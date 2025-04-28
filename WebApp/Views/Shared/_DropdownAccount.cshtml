@@ -1,0 +1,34 @@
+﻿<!-- Base code for profile drowdown from Material Tailwind. Modified to fit the design of the project. -->
+<img alt="user avatar"
+     src="/images/Avatar1.jpg"
+     class="relative img-rounded dropdown-account ml-8"
+     data-popover-target="profile-menu" />
+<ul role="menu"
+    data-popover="profile-menu"
+    data-popover-placement="bottom"
+    data-popover-mount="opacity-100 pointer-events-auto translate-y-[0]"
+    data-popover-unmount="opacity-0 pointer-events-none translate-y-[-250px]"
+    class="absolute z-10 min-w-[180px] overflow-auto rounded-lg border border-slate-200 bg-white p-2 shadow-md focus:outline-none
+    translate-x-[-5px] opacity-0 pointer-events-none translate-y-[-250px] transition-all ease-in-out duration-300">
+    <li role="menuitem"
+        class="li-item bg-slate-100">
+        <img alt="user avatar"
+             src="/images/Avatar1.jpg"
+             class="relative img-rounded" />
+        <p class="text-slate-800 font-medium ml-2">
+            User Name
+        </p>
+    </li>
+    <hr class="my-2 border-slate-200" role="menuitem" />
+    <li role="menuitem"
+        class="li-item py-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-slate-400">
+            <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M19 10a.75.75 0 0 0-.75-.75H8.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 19 10Z" clip-rule="evenodd" />
+        </svg>
+
+        <p class="text-slate-800 font-medium ml-2">
+            Sign Out
+        </p>
+    </li>
+</ul>
