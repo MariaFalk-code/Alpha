@@ -989,6 +989,14 @@ body{
   margin-top: 1.5rem;
 }
 
+.ml-auto{
+  margin-left: auto;
+}
+
+.mr-1\.5{
+  margin-right: 0.375rem;
+}
+
 .block{
   display: block;
 }
@@ -1161,6 +1169,10 @@ body{
 
 .grid-rows-\[auto_1fr\]{
   grid-template-rows: auto 1fr;
+}
+
+.grid-rows-\[auto_auto_1fr\]{
+  grid-template-rows: auto auto 1fr;
 }
 
 .flex-col{
@@ -1351,12 +1363,21 @@ body{
   padding-bottom: 2rem;
 }
 
+.px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .pt-0{
   padding-top: 0px;
 }
 
 .pt-8{
   padding-top: 2rem;
+}
+
+.pb-4{
+  padding-bottom: 1rem;
 }
 
 .font-logo{
@@ -1402,6 +1423,10 @@ body{
 
 .font-semibold{
   font-weight: 600;
+}
+
+.uppercase{
+  text-transform: uppercase;
 }
 
 .text-blue-accent{
