@@ -1,0 +1,22 @@
+﻿<!-- Base code for drowdown from Material Tailwind. Modified to fit the design of the project. -->
+<div>
+    <button data-popover-target="settings-menu" class="btn-header" type="button">
+        <i class="fa-solid fa-gear pointer-events-none"></i>
+        </i>
+    </button>
+    <ul role="menu"
+        data-popover="settings-menu"
+        data-popover-placement="bottom"
+        data-popover-mount="opacity-100 pointer-events-auto translate-y-[0]"
+        data-popover-unmount="opacity-0 pointer-events-none translate-y-[-300px]"
+        class="absolute z-10 min-w-[180px] overflow-auto rounded-lg border border-slate-200 bg-white p-2 shadow-md focus:outline-none
+          translate-x-[-5px] opacity-0 pointer-events-none translate-y-[-300px] transition-all ease-in-out duration-300">
+        <li role="menuitem"
+            class="li-item bg-white">
+            <i class="fa-solid fa-moon"></i>
+            <p class="text-slate-800 font-medium ml-4">
+                Darkmode
+            </p>
+        </li>
+    </ul>
+</div>

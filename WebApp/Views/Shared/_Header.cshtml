@@ -1,13 +1,9 @@
 ﻿<header class="flex items-center justify-end gap-4 p-4 border-b border-slate-300 dark:border-slate-700">
     <div>
-        <button type="button" data-type="dropdown" data-target=#settings class="btn-header">
-            <i class="fa-solid fa-gear"></i>
-        </button>
+		@await Html.PartialAsync("_DropdownSettings")
     </div>
     <div>
-        <button type="button" data-type="dropdown" data-target="#notifications" class="btn-header">
-            <i class="fa-solid fa-bell"></i>
-        </button>
+		@await Html.PartialAsync("_DropdownNotifications")
     </div>
     <div>
 		@await Html.PartialAsync("_DropdownAccount")
