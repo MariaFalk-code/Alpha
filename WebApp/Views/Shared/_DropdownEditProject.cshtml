@@ -1,0 +1,34 @@
+﻿@* Base code for drowdown from Material Tailwind. Modified to fit the design of the project. *@
+<button data-popover-target="edit-project-menu"
+        type="button" 
+        class="text-slate-400 hover:text-slate-600">
+    <i class="fa-solid fa-ellipsis-vertical pointer-events-none"></i>
+</button>
+<ul role="menu"
+    data-popover="edit-project-menu"
+    data-popover-placement="bottom-end"
+    data-popover-mount="opacity-100 pointer-events-auto"
+    data-popover-unmount="opacity-0 pointer-events-none"
+    class="absolute z-10 min-w-[160px] overflow-auto rounded-lg border border-slate-200 bg-white p-2 shadow-md focus:outline-none
+           translate-x-4 opacity-0 pointer-events-none transition-all ease-in-out duration-300">
+    <li role="menuitem">
+        <button class="open-edit-project-modal flex li-item bg-white"
+            data-popover-nested="true"
+            type="button">
+            <i class="fa-solid fa-pen-line"></i>
+            <p class="text-slate-800 font-medium ml-4">
+                Edit
+            </p>
+		</button>
+    </li>
+    <li role="menuitem">
+        <button type="button" class="flex li-item bg-white">
+            <i class="fa-solid fa-trash-can text-red-500"></i>
+            <p class="text-red-500 font-medium ml-4">
+                Delete Project
+            </p>
+        </button>
+    </li>
+</ul>
+
+@await Html.PartialAsync("_EditProjectModal")

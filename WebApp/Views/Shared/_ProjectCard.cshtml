@@ -11,9 +11,7 @@
                 <span class="text-sm text-slate-500">@Model.ClientName</span>
             </div>
         </div>
-        <button class="text-slate-400 hover:text-slate-600">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-        </button>
+        @await Html.PartialAsync("_DropdownEditProject")
     </div>
 
     <p class="text-sm text-slate-600 mt-4">

@@ -38,9 +38,8 @@
                         Description
                     </label>
                     <input type ="hidden" @* asp-for="Description" *@ name="Description" id="description" />
-                    <div id="editor"
-                         class="min-h-[10rem] text-input"
-                         data-initial-content="@Html.Raw(Model.Description)">
+                    <div class="rich-text-editor min-h-[10rem] text-input"
+                         @* data-initial-content="@Html.Raw(Model.Description)" *@>
                     </div>
                 </div>
 
