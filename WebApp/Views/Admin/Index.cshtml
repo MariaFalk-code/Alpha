@@ -20,30 +20,10 @@
 </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 pt-8 overflow-y-auto">
-    <div class="rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
-        new project
-    </div>
-    <div class="rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
-        new project
-    </div>
-    <div class="rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
-        new project
-    </div>
-    <div class="rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
-        new project
-    </div>
-    <div class="rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
-        new project
-    </div>
-    <div class="rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
-        new project
-    </div>
-    <div class="rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
-        new project
-    </div>
-    <div class="rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
-        new project
-    </div>
+	@await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardModel { ProjectName = "Website Redesign", ClientName = "GitLab Inc.", Description = "It is necessary to develop a website redesign in a corporate style.", Deadline = "1 week left", TeamMembers = new List<string> { "/images/avatar1.jpg", "/images/avatar2.jpg" } })
+    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardModel { ProjectName = "Landing Page", ClientName = "Bitbucket, Inc.", Description = "It is necessary to create a landing together with the development of design.", Deadline = "5 weeks left", TeamMembers = new List<string> { "/images/avatar3.jpg", "/images/avatar2.jpg" } })
+    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardModel { ProjectName = "Parser Development", ClientName = "Parser Development", Description = "It is necessary to develop a ticket site parser in python.", Deadline = "Due", TeamMembers = new List<string> { "/images/avatar1.jpg", "/images/avatar2.jpg", "/images/avatar3.jpg" } })
+    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardModel { ProjectName = "App Development", ClientName = "Slack Technologies, Inc.", Description = "Create a mobile application on iOS and Android devices.", Deadline = "12 weeks left", TeamMembers = new List<string> { "/images/avatar4.jpg", "/images/avatar5.jpg" } })
 </div>
 
 @await Html.PartialAsync("_AddProjectModal")

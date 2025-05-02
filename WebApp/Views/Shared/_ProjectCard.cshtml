@@ -1,0 +1,32 @@
+﻿@model WebApp.Models.ProjectCardModel
+
+<div class="flex flex-col justify-between rounded-xl h-[13rem] sm:h-[17rem] bg-white shadow-md p-6">
+    <div class="flex items-start justify-between">
+        <div class="flex items-center gap-3">
+            <div class="img-bg-square h-10 w-10">
+                <img src="/images/Vector6.svg" alt="project symbol" class="inline-block pt-1" />
+            </div>
+            <div class="flex flex-col">
+                <h3 class="font-semibold text-slate-950 text-md">@Model.ProjectName</h3>
+                <span class="text-sm text-slate-500">@Model.ClientName</span>
+            </div>
+        </div>
+        <button class="text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </button>
+    </div>
+
+    <p class="text-sm text-slate-600 mt-4">
+        @Model.Description
+    </p>
+
+    <div class="flex items-center justify-between mt-6">
+        <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-md"><span>@Model.Deadline</span></span>
+        <div class="flex -space-x-2">
+            @foreach (var member in Model.TeamMembers)
+            {
+                <img src="@member" class="w-6 h-6 rounded-full border-2 border-white" />
+            }
+        </div>
+    </div>
+</div>
