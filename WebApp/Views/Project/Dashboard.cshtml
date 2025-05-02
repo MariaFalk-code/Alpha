@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Dashboard";
+}
+<div class="flex items-center pb-4">
+    <h1 class="text-3xl font-bold text-slate-950 dark:text-white">
+        Projects
+    </h1>
+    <div class="ml-auto">
+        <button data-dialog-target="add-project-dialog"
+                class="btn-primary px-6"
+                type="button">
+            <i class="fa-solid fa-plus mr-1.5"></i>
+            Add Project
+        </button>
+    </div>
+</div>
+<div>
+    @await Html.PartialAsync("_NavProjects")
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 pt-8 overflow-y-auto">
+    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardViewModel { ProjectName = "Website Redesign", ClientName = "GitLab Inc.", Description = "It is necessary to develop a website redesign in a corporate style."})
+    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardViewModel { ProjectName = "Landing Page", ClientName = "Bitbucket, Inc.", Description = "It is necessary to create a landing together with the development of design."})
+    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardViewModel { ProjectName = "Parser Development", ClientName = "Parser Development", Description = "It is necessary to develop a ticket site parser in python."})
+    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardViewModel { ProjectName = "App Development", ClientName = "Slack Technologies, Inc.", Description = "Create a mobile application on iOS and Android devices."})
+</div>
+
+@await Html.PartialAsync("_AddProjectModal")

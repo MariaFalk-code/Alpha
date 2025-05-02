@@ -2,9 +2,9 @@
 
 namespace WebApp.Controllers;
 
-public class AdminController : Controller
+public class ProjectController : Controller
 {
-    public IActionResult Index()
+    public IActionResult Dashboard()
     {
         return View();
     }
