@@ -33,7 +33,9 @@
     .img-rounded {
         @apply inline-block rounded-full w-10 h-10 overflow-hidden object-cover object-center border border-white bg-transparent text-blue-accent;
     }
-
+    .img-square {
+        @apply inline-block rounded-xl w-32 h-32 overflow-hidden object-center border border-white bg-gradient-to-bl from-purple-500 via-indigo-500 to-blue-500 text-blue-accent;
+    }
     .dropdown-account {
         @apply appearance-none;
         @apply transition-all shadow-md cursor-pointer hover:shadow-lg focus:text-blue-focus active:shadow-none active:text-blue-focus focus:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none;
@@ -42,7 +44,7 @@
     .li-item {
         @apply cursor-pointer text-slate-800 flex w-full text-sm items-center rounded-xl p-2 transition-all hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200;
     }
-    
+
     .text-input {
         @apply appearance-none;
         @apply w-full bg-transparent placeholder:text-slate-500 text-slate-700 text-sm border border-slate-200 rounded-xl px-3 py-2 transition duration-300 ease-in-out focus:outline-none focus:border-slate-400 hover:border-slate-300 focus:shadow;

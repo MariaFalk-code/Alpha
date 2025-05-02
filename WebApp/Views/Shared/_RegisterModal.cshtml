@@ -1,17 +1,18 @@
-﻿<div data-dialog-backdrop="register-dialog"
+﻿@* Basecode for modal from Material Tailwind, modified to fit the design of the project. *@
+<div data-dialog-backdrop="register-dialog"
      data-dialog-backdrop-close="true"
      class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
     <div data-dialog="register-dialog"
          class="relative mx-auto w-full max-w-[37.5rem] rounded-lg overflow-hidden shadow-md transition-all duration-300 opacity-0 -translate-y-14">
 
-        <div class="relative flex flex-col bg-white">
+        <div class="relative flex flex-col bg-white max-h-[90dvh] overflow-y-auto">
             <div class="relative mt-12 items-center flex justify-center">
                 <h1 class="text-3xl font-bold">
                     Create Account
                 </h1>
             </div>
 
-            <form method="post" asp-controller="Auth" asp-action="Register" class="flex flex-col gap-4 py-8 px-24">
+            <form method="post" asp-controller="Auth" asp-action="Register" novalidate class="flex flex-col gap-4 py-8 px-24">
 
                 <div class="w-full min-w-[200px]">
                     <label class="block mb-2 text-sm font-semibold">
@@ -41,22 +42,22 @@
                     <input type="password" class="text-input" placeholder="Enter a password" />
                 </div>
 
-                <div class="w-full min-w-[200px]">
+                <div class="w-full min-w-[200px] mb-2">
                     <label class="block mb-2 text-sm font-semibold">
-                        Password
+                        Confirm Password
                     </label>
                     <input type="password" class="text-input" placeholder="Confirm password" />
                 </div>
 
                 @await Html.PartialAsync("_Checkbox", ("termsAndConditions", "I accept Terms and Conditions", false))
 
-                <button class="btn-primary" type="button">
+                <button class="btn-primary mt-6" type="button">
                     Create Account
                 </button>
             </form>
 
             <div class="py-6 px-24 pt-0">
-                <p class="flex justify-center mt-28 text-sm">
+                <p class="flex justify-center mt-20 text-sm">
                     Already have an account?
                     <a href="#"
                        data-close="register-dialog"

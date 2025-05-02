@@ -1,6 +1,5 @@
-﻿//Script for handling switching between dialogs, provided by ChatGPT4o and slightly modified by me to actually work. 
-
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
+    //Script for handling switching between dialogs, provided by ChatGPT4o and slightly modified by me to actually work.
     document.querySelectorAll('[data-switch-dialog]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -20,14 +19,43 @@ document.addEventListener("DOMContentLoaded", () => {
             dialogFrom.classList.remove("opacity-1", "translate-y-0");
             dialogFrom.classList.add("opacity-0", "-translate-y-14");
 
-            // Small delay to allow closing animation to play
             setTimeout(() => {
-                // Open new modal
                 backdropTo.classList.remove("opacity-0", "pointer-events-none");
                 dialogTo.classList.add("opacity-1", "translate-y-0");
                 dialogTo.classList.remove("opacity-0", "-translate-y-14");
-            }, 250); // Matches Tailwind's transition duration
+            }, 250);
         });
     });
+
+    // //Script for handling the rich context editor, provided by ChatGPT4o. Updated to also load initial content into editor if present when editing.
+    const editorElement = document.querySelector('#editor');
+    const form = document.querySelector('form');
+
+    if (editorElement && form) {
+        const quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: 'Write your project description',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['link', 'blockquote', 'code-block'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    ['clean']
+                ]
+            }
+        });
+
+        const initialContent = editorElement.dataset.initialContent;
+        if (initialContent) {
+            quill.root.innerHTML = initialContent;
+        }
+
+        form.addEventListener('submit', function () {
+            const content = document.querySelector('#description');
+            content.value = quill.root.innerHTML;
+        });
+    }
+
 });
 
