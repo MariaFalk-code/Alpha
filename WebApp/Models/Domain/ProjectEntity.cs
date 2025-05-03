@@ -10,13 +10,14 @@ namespace WebApp.Models.Domain
     }
     public class ProjectEntity
     {
-        public Guid Id { get; set; } = GuidGenerator.NewGuid();
-        public string ProjectName { get; set; } = string.Empty;
-        public string ClientName { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public Guid Id { get; set; } = GuidHelper.GenerateGuid();
+        public string ProjectName { get; set; } = null!;
+        public string ClientName { get; set; } = null!;
+        public string Description { get; set; } = null!;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public ProjectStatus Status { get; set; } = ProjectStatus.NotStarted;
+        public decimal Budget { get; set; }
         public List<TeamMemberEntity> TeamMembers { get; set; } = new();
 
     }
