@@ -43,7 +43,7 @@ public class ProjectService
             await _context.SaveChangesAsync();
         }
     }
-    public async Task GetProjectById(Guid id)
+    public async Task GetProjectByIdAsync(Guid id)
     {
         var project = await _context.Projects.FindAsync(id);
         return project;

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<WebApp.Models.ViewModels.ProjectCard>
+
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Dashboard";
 }
@@ -20,10 +22,10 @@
 </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 pt-8 overflow-y-auto">
-    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardViewModel { ProjectName = "Website Redesign", ClientName = "GitLab Inc.", Description = "It is necessary to develop a website redesign in a corporate style."})
-    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardViewModel { ProjectName = "Landing Page", ClientName = "Bitbucket, Inc.", Description = "It is necessary to create a landing together with the development of design."})
-    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardViewModel { ProjectName = "Parser Development", ClientName = "Parser Development", Description = "It is necessary to develop a ticket site parser in python."})
-    @await Html.PartialAsync("_ProjectCard", new WebApp.Models.ProjectCardViewModel { ProjectName = "App Development", ClientName = "Slack Technologies, Inc.", Description = "Create a mobile application on iOS and Android devices."})
+	@foreach (var project in Model)
+	{
+		@await Html.PartialAsync("_ProjectCard", project)
+	}
 </div>
 
 @await Html.PartialAsync("_AddProjectModal")

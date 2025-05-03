@@ -15,12 +15,29 @@ public class ProjectController : Controller
     // GET
     public async Task<IActionResult> Dashboard()
     {
-        var projects = await _projectService.GetAllProjectsAsync();
-        return View(projects);
+        var projectCards = await _projectService.GetAllProjectsAsync();
+        return View(projectCards);
     }
     public IActionResult Add()
     {
         return View(new ProjectFormModel());
+    }
+    public async Task<IActionResult> Edit(Guid id)
+    {
+        var project = await _projectService.GetProjectByIdAsync(id);
+        var model = new EditProjectFormModel
+        {
+            ProjectId = project.Id,
+            ProjectName = project.Name,
+            ClientName = project.Client.Name,
+            Description = project.Description,
+            StartDate = project.StartDate,
+            EndDate = project.EndDate,
+            Budget = project.Budget
+        };
+
+        return PartialView("_EditProjectModal", model);
+
     }
 
     //POST
