@@ -1,5 +1,6 @@
 ﻿namespace WebApp.Helpers;
 
+//ChatGPT4o wrote this to easily calculate the project deadline.
 public static class CalculateDeadline
 {
     public static string GetDeadline(DateTime startDate, DateTime endDate)

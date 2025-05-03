@@ -1,6 +1,6 @@
 ﻿using WebApp.Helpers;
 
-namespace WebApp.Models;
+namespace WebApp.Models.ViewModels;
 
 public class ProjectCardViewModel
 {
