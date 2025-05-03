@@ -43,14 +43,15 @@ public class ProjectService
             await _context.SaveChangesAsync();
         }
     }
-    public async Task GetProjectByIdAsync(Guid id)
+    public async Task<ProjectEntity?> GetProjectByIdAsync(Guid id)
     {
-        var project = await _context.Projects.FindAsync(id);
-        return project;
+        return await _context.Projects.FindAsync(id);
+
     }
-    public async Task<List<ProjectEntity>> GetAllProjectsAsync()
+    public async Task<List<ProjectCard>> GetAllProjectsAsync()
     {
         var projects = await _context.Projects.ToListAsync();
+        var viewModels = new List<ProjectCard>();
 
         foreach (var project in projects)
         {
@@ -58,11 +59,29 @@ public class ProjectService
             {
                 project.Status = ProjectStatus.Started;
             }
+
+            viewModels.Add(new ProjectCard
+            {
+                ProjectId = project.ProjectId,
+                ProjectName = project.ProjectName,
+                ClientName = project.ClientName,
+                Description = project.Description,
+                StartDate = project.StartDate,
+                EndDate = project.EndDate,
+                Budget = project.Budget,
+                Status = project.Status,
+                TeamMembers = project.TeamMembers.Select(tm => new TeamMemberDisplay
+                {
+                    FirstName = tm.FirstName,
+                    LastName = tm.LastName
+                }).ToList()
+            });
         }
 
-        await _context.SaveChangesAsync();
-        return projects;
-    }
+    await _context.SaveChangesAsync();
+
+    return viewModels;
+}
 
     public async Task MarkProjectAsCompletedAsync(Guid id)
     {
@@ -70,6 +89,16 @@ public class ProjectService
         if (project != null)
         {
             project.Status = ProjectStatus.Completed;
+            await _context.SaveChangesAsync();
+        }
+    }
+
+    public async Task DeleteProjectAsync(Guid id)
+    {
+        var project = await _context.Projects.FindAsync(id);
+        if (project != null)
+        {
+            _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
         }
     }

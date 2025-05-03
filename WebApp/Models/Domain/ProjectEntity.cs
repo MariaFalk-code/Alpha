@@ -10,7 +10,7 @@ namespace WebApp.Models.Domain
     }
     public class ProjectEntity
     {
-        public Guid Id { get; set; } = GuidHelper.GenerateGuid();
+        public Guid ProjectId { get; set; } = GuidHelper.GenerateGuid();
         public string ProjectName { get; set; } = null!;
         public string ClientName { get; set; } = null!;
         public string Description { get; set; } = null!;

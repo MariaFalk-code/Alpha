@@ -27,38 +27,33 @@
         });
     });
 
-    //Script for handling the rich context editor, provided by ChatGPT4o. Updated to support two editors and also load initial content into editor if present when editing.
-        const editors = document.querySelectorAll('.rich-text-editor');
-
-        editors.forEach(editorElement => {
-            const quill = new Quill(editorElement, {
-                theme: 'snow',
-                placeholder: 'Write your project description',
-                modules: {
-                    toolbar: [
-                        [{ header: [1, 2, false] }],
-                        ['bold', 'italic', 'underline'],
-                        ['link', 'blockquote', 'code-block'],
-                        [{ list: 'ordered' }, { list: 'bullet' }],
-                        ['clean']
-                    ]
-                }
-            });
-
-            // Get corresponding hidden input inside the same parent form
-            const form = editorElement.closest('form');
-            const hiddenInput = form?.querySelector(`input[name="Description"]`);
-
-            if (editorElement.dataset.initialContent) {
-                quill.root.innerHTML = editorElement.dataset.initialContent;
-            }
-
-            if (form && hiddenInput) {
-                form.addEventListener('submit', () => {
-                    hiddenInput.value = quill.root.innerHTML;
-                });
+    //Script for handling the rich context editor, provided by ChatGPT4o. Updated to support multiple editors.
+    document.querySelectorAll('.rich-text-editor').forEach(editorElement => {
+        const quill = new Quill(editorElement, {
+            theme: 'snow',
+            placeholder: 'Write your project description',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['link', 'blockquote', 'code-block'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    ['clean']
+                ]
             }
         });
+
+        editorElement.__quill = quill;
+        const form = editorElement.closest('form');
+        const hiddenInput = form?.querySelector(`input[name="Description"]`);
+
+
+        if (form && hiddenInput) {
+            form.addEventListener('submit', () => {
+                hiddenInput.value = quill.root.innerHTML;
+            });
+        }
+    });
 
     //Script for handling closing currently open dropdowns when a new one is opened. Code provided by ChatGPT4o and altered after my suggestions.
     document.querySelectorAll('[data-popover-target]').forEach(trigger => {
@@ -79,26 +74,41 @@
         });
     });
 
-    //Script for opening the edit project modal manually, since the standard logic won't work because it is nested within a dropdown. Code provided by ChatGPT4o, modified several times to function properly.
-        document.addEventListener("click", (e) => {
-            const modalTrigger = e.target.closest('.open-edit-project-modal');
-            if (!modalTrigger) return;
+    //Script for opening the edit project modal manually from dropdown, since the standard logic won't work because of the nesting. 
+    //Added functionality to pre-fill form fields with existing values. Code provided by ChatGPT4o, modified several times to function properly.
+    document.addEventListener("click", (e) => {
+        const modalTrigger = e.target.closest('.open-edit-project-modal');
+        if (!modalTrigger) return;
 
-            // Prevent dropdown from closing before this runs
-            e.stopPropagation();
+        e.stopPropagation();
 
-            const backdrop = document.querySelector('[data-dialog-backdrop="edit-project-dialog"]');
-            const dialog = document.querySelector('[data-dialog="edit-project-dialog"]');
+        const dialog = document.querySelector('[data-dialog="edit-project-dialog"]');
+        const backdrop = document.querySelector('[data-dialog-backdrop="edit-project-dialog"]');
+        if (!dialog || !backdrop) return;
 
-            if (!backdrop || !dialog) return;
+        // Fill form fields from data attributes
+        dialog.querySelector('[data-target="edit-project-id"]').value = modalTrigger.dataset.projectId ?? '';
+        dialog.querySelector('[data-target="edit-project-name"]').value = modalTrigger.dataset.projectName ?? '';
+        dialog.querySelector('[data-target="edit-client-name"]').value = modalTrigger.dataset.clientName ?? '';
+        dialog.querySelector('[data-target="edit-start-date"]').value = modalTrigger.dataset.startDate ?? '';
+        dialog.querySelector('[data-target="edit-end-date"]').value = modalTrigger.dataset.endDate ?? '';
+        dialog.querySelector('[data-target="edit-budget"]').value = modalTrigger.dataset.budget ?? '';
 
-            // Open modal after dropdown closes
-            setTimeout(() => {
-                backdrop.classList.remove("opacity-0", "pointer-events-none");
-                dialog.classList.remove("opacity-0", "-translate-y-14");
-                dialog.classList.add("opacity-1", "translate-y-0");
-            }, 200);
-        });
+        const richTextEditor = dialog.querySelector('.rich-text-editor');
+        if (richTextEditor && modalTrigger.dataset.description) {
+            const quill = richTextEditor.__quill;
+            if (quill) {
+                quill.setContents(quill.clipboard.convert(modalTrigger.dataset.description));
+            }
+        }
+
+        // Show modal
+        setTimeout(() => {
+            backdrop.classList.remove("opacity-0", "pointer-events-none");
+            dialog.classList.remove("opacity-0", "-translate-y-14");
+            dialog.classList.add("opacity-1", "translate-y-0");
+        }, 200);
+    });
 
     //Script for closing the edit project modal when clicking outside of it. Code provided by ChatGPT4o.
     document.addEventListener('click', (e) => {

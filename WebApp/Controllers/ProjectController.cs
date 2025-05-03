@@ -25,11 +25,15 @@ public class ProjectController : Controller
     public async Task<IActionResult> Edit(Guid id)
     {
         var project = await _projectService.GetProjectByIdAsync(id);
+        if (project == null)
+            return NotFound();
+
         var model = new EditProjectFormModel
+
         {
-            ProjectId = project.Id,
-            ProjectName = project.Name,
-            ClientName = project.Client.Name,
+            ProjectId = project.ProjectId,
+            ProjectName = project.ProjectName,
+            ClientName = project.ClientName,
             Description = project.Description,
             StartDate = project.StartDate,
             EndDate = project.EndDate,
@@ -42,22 +46,22 @@ public class ProjectController : Controller
 
     //POST
     [HttpPost]
-    public IActionResult Add(ProjectFormModel model)
+    public async Task<IActionResult> Add(ProjectFormModel model)
     {
         if (!ModelState.IsValid)
             return ViewComponent("_AddProjectModal", model);
         
-        //To be continued
+        await _projectService.AddProjectAsync(model);
 
         return RedirectToAction("Dashboard");
     }
     [HttpPost]
-    public IActionResult Edit(EditProjectFormModel model)
+    public async Task<IActionResult> Edit(EditProjectFormModel model)
     {
         if (!ModelState.IsValid)
             return ViewComponent("_EditProjectModal", model);
 
-        //To be continued
+        await _projectService.EditProjectAsync(model.ProjectId, model);
 
         return RedirectToAction("Dashboard");
     }

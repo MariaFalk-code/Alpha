@@ -21,27 +21,28 @@
             </div>
 
             <div class="flex flex-col gap-4 p-6">
-                <input type="hidden" asp-for="ProjectId" />
+                <input type="hidden" asp-for="ProjectId" data-target="edit-project-id" />
                 <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
                     <label asp-for="ProjectName" class="block mb-2 text-sm text-slate-950">
                         Project Name
                     </label>
-                    <input asp-for="ProjectName" class="text-input" placeholder="Project Name" />
+                    <input asp-for="ProjectName" data-target="edit-project-name" class="text-input" placeholder="Project Name" />
                 </div>
 
                 <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
                     <label asp-for="ClientName" class="block mb-2 text-sm text-slate-950">
                         Client Name
                     </label>
-                    <input asp-for="ClientName" class="text-input" placeholder="Client Name" />
+                    <input asp-for="ClientName" data-target="edit-client-name" class="text-input" placeholder="Client Name" />
                 </div>
 
                 <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
-                    <label asp-for="Description" name="Description" class="block mb-2 text-sm text-slate-950">
+                    <label asp-for="Description" class="block mb-2 text-sm text-slate-950">
                         Description
                     </label>
-                    <input asp-for="Description" type="hidden"  name="Description" id="description" />
+                    <input asp-for="Description" type="hidden"/>
                     <div class="rich-text-editor min-h-[10rem] text-input"
+                         data-target="edit-description"
                          data-initial-content="@Html.Raw(Model.Description)">
                     </div>
                 </div>
@@ -51,13 +52,13 @@
                         <label asp-for="StartDate" class="block mb-2 text-sm font-semibold text-slate-950">
                             Start Date
                         </label>
-                        <input asp-for="StartDate" type="date" class="text-input" />
+                        <input asp-for="StartDate" data-target="edit-start-date" type="date" class="text-input" />
                     </div>
                     <div class="w-full max-w-sm min-w-[100px] sm:max-w-md sm:min-w-[150px]">
                         <label asp-for="EndDate" class="block mb-2 text-sm font-semibold text-slate-950">
                             End Date
                         </label>
-                        <input asp-for="EndDate" type="date" class="text-input" />
+                        <input asp-for="EndDate" data-target="edit-end-date" type="date" class="text-input" />
                     </div>
                 </div>
 
@@ -65,7 +66,7 @@
                     <label asp-for="Budget" class="block mb-2 text-sm text-slate-950">
                         Budget
                     </label>
-                    <input asp-for="Budget" type="number" class="text-input" placeholder="Budget" />
+                    <input asp-for="Budget" data-target="edit-budget" type="number" class="text-input" placeholder="Budget" />
                 </div>
             </div>
             <div class="p-6 pt-8">

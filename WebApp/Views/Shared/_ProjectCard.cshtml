@@ -12,7 +12,7 @@
                 <span class="text-sm text-slate-500">@Model.ClientName</span>
             </div>
         </div>
-        @await Html.PartialAsync("_DropdownEditProject")
+        @await Html.PartialAsync("_DropdownEditProject", Model)
     </div>
 
     <p class="text-sm text-slate-600 mt-4 overflow-hidden">

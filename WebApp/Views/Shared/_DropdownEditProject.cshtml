@@ -1,4 +1,6 @@
-﻿@* Base code for drowdown from Material Tailwind. Modified to fit the design of the project. *@
+﻿@model WebApp.Models.ViewModels.ProjectCard
+
+@* Base code for drowdown from Material Tailwind. Modified to fit the design of the project. *@
 <button data-popover-target="edit-project-menu"
         type="button" 
         class="text-slate-400 hover:text-slate-600">
@@ -15,6 +17,13 @@
         <button class="open-edit-project-modal flex li-item bg-white"
             data-popover-nested="true"
             type="button">
+            data-project-id="@Model.ProjectId"
+            data-project-name="@Model.ProjectName"
+            data-client-name="@Model.ClientName"
+            data-description="@Model.Description"
+            data-start-date="@Model.StartDate.ToString("yyyy-MM-dd")"
+            data-end-date="@Model.EndDate.ToString("yyyy-MM-dd")"
+            data-budget="@Model.Budget">
             <i class="fa-solid fa-pen-line"></i>
             <p class="text-slate-800 font-medium ml-4">
                 Edit
@@ -23,7 +32,7 @@
     </li>
     <li role="menuitem">
         <form asp-action="MarkAsCompleted" asp-controller="Project" method="post">
-            <input type="hidden" name="projectId" @* value="@Model.ProjectId" *@ />
+            <input type="hidden" asp-for="ProjectId" />
             <button type="submit" class="flex li-item bg-white">
                 <i class="fa-solid fa-check text-green-500"></i>
                 <p class="text-slate-800 font-medium ml-4">Mark as Completed</p>
