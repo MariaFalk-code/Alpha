@@ -17,57 +17,61 @@ namespace WebApp.Controllers
             return View();
         }
 
-    [HttpGet]
+        [HttpGet]
         public IActionResult Register()
         {
             return View(new RegisterFormModel());
         }
 
         [HttpPost]
-    public async Task<IActionResult> Register(RegisterFormModel model)
-    {
-        if (!ModelState.IsValid)
-            return PartialView("_RegisterModal", model); // Show form again with validation errors
-
-        var result = await _userService.CreateAsync(model);
-
-        if (result == 200)
-            return RedirectToAction("Dashboard", "Project");
-
-        if (result == 409)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterFormModel model)
         {
-            ModelState.AddModelError("Email", "An account with this email already exists.");
-                return PartialView("_RegisterModal", model);
+            if (!ModelState.IsValid)
+                return View(model); // Returns the full Register.cshtml page with errors
+
+            var result = await _userService.CreateAsync(model);
+
+            if (result == 200)
+                return RedirectToAction("Dashboard", "Project");
+
+            if (result == 409)
+            {
+                ModelState.AddModelError("Email", "An account with this email already exists.");
+                return View(model);
             }
 
-        ModelState.AddModelError("", "An unexpected error occurred. Please try again.");
-            return PartialView("_RegisterModal", model);
+            ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again.");
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View(new LoginFormModel());
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginFormModel model)
         {
             if (!ModelState.IsValid)
-            {
-                return PartialView("_LoginModal", model);
-            }
+                return View(model);
 
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                return PartialView("_LoginModal", model);
+                return View(model);
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, lockoutOnFailure: false);
 
             if (result.Succeeded)
-            {
                 return RedirectToAction("Dashboard", "Project");
-            }
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return PartialView("_LoginModal", model);
+            return View(model);
         }
 
         [HttpPost]
@@ -78,4 +82,5 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
     }
+}
 

@@ -18,7 +18,14 @@ builder.Services.AddScoped<UserService>();
 
 
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddViewOptions(options =>
+     {
+         options.HtmlHelperOptions.ClientValidationEnabled = true;
+     });
+
+builder.Services.AddRazorPages()
+    .AddDataAnnotationsLocalization();
 
 var app = builder.Build();
 
@@ -29,7 +36,7 @@ app.UseAuthorization();
 app.MapStaticAssets();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Project}/{action=Dashboard}/{id?}")
+    pattern: "{controller=Auth}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

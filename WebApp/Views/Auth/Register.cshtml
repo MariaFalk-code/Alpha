@@ -1,0 +1,70 @@
+﻿@model WebApp.Models.ViewModels.RegisterFormModel
+
+@{
+    Layout = "_Layout_Centered";
+    ViewData["Title"] = "Register";
+ }
+
+    <section class="w-full max-w-[37.5rem] my-12 rounded-lg overflow-hidden shadow-md bg-white">
+        <div class="py-12 px-10">
+            <h1 class="text-3xl font-bold text-center mb-8">
+                Create Account
+            </h1>
+
+            <form method="post" asp-controller="Auth" asp-action="Register" class="flex flex-col gap-4" novalidate>
+                <div class="w-full">
+                    <label asp-for="FirstName" class="block mb-2 text-sm font-semibold">First Name</label>
+                    <input asp-for="FirstName" class="text-input w-full" placeholder="Your first name" />
+                    <span asp-validation-for="FirstName" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div class="w-full">
+                    <label asp-for="LastName" class="block mb-2 text-sm font-semibold">Last Name</label>
+                    <input asp-for="LastName" class="text-input w-full" placeholder="Your last name" />
+                    <span asp-validation-for="LastName" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div class="w-full">
+                    <label asp-for="Email" class="block mb-2 text-sm font-semibold">Email</label>
+                    <input asp-for="Email" class="text-input w-full" placeholder="Your email address" />
+                    <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div class="w-full">
+                    <label asp-for="Password" class="block mb-2 text-sm font-semibold">Password</label>
+                    <input asp-for="Password" class="text-input w-full" placeholder="Enter a password" />
+                    <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div class="w-full">
+                    <label asp-for="ConfirmPassword" class="block mb-2 text-sm font-semibold">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" class="text-input w-full" placeholder="Confirm password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div class="flex items-start">
+                    <input asp-for="TermsAccepted" class="mr-2 mt-1 accent-blue-500" type="checkbox" />
+                    <label asp-for="TermsAccepted" class="text-sm font-medium text-slate-800">
+                        I accept Terms and Conditions
+                    </label>
+                </div>
+                <span asp-validation-for="TermsAccepted" class="text-red-500 text-sm"></span>
+
+                <button class="btn-primary mt-6 w-full" type="submit">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="pt-8 text-center">
+                <p class="text-sm">
+                    Already have an account?
+                    <a href="/Auth/Login" class="ml-1 text-sm font-semibold text-blue-accent">
+                        Log In
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+@await Html.PartialAsync("_ValidationScripts")
+

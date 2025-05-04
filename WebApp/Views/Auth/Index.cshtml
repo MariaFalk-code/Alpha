@@ -13,14 +13,11 @@
         </span>
     </div>
     <div class="flex items-center justify-center w-full mt-6">
-        <button data-dialog-target="sign-in-dialog" class="btn-primary" type="button">
+        <a asp-controller="Auth" asp-action="Login" class="btn-primary">
             Sign In
-        </button>
-        <button data-dialog-target="register-dialog" class="btn-primary ml-2" type="button">
+        </a>
+        <a asp-controller="Auth" asp-action="Register" class="btn-primary ml-2">
             Register
-        </button>
+        </a>
     </div>
 </div>
-
-@await Html.PartialAsync("_LoginModal")
-@await Html.PartialAsync("_RegisterModal")

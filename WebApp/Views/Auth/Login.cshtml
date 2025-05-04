@@ -1,0 +1,51 @@
+﻿@model WebApp.Models.ViewModels.LoginFormModel
+
+@{
+    Layout = "_Layout_Centered";
+    ViewData["Title"] = "Login";
+}
+
+    <section class="w-full max-w-[37.5rem] my-12 rounded-lg shadow-md bg-white">
+        <div class="py-12 px-10">
+            <h1 class="text-3xl font-bold text-center mb-8">
+                Login
+            </h1>
+
+            <form method="post" asp-controller="Auth" asp-action="Login" novalidate class="flex flex-col gap-4">
+                <div class="w-full">
+                    <label asp-for="Email" class="block mb-2 text-sm font-semibold">Email</label>
+                    <input asp-for="Email" class="text-input w-full" placeholder="Your email address" />
+                    <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div class="w-full">
+                    <label asp-for="Password" class="block mb-2 text-sm font-semibold">Password</label>
+                    <input asp-for="Password" class="text-input w-full" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div class="flex items-start">
+                    <input asp-for="RememberMe" type="checkbox" class="mr-2 mt-1 accent-blue-500" />
+                    <label asp-for="RememberMe" class="text-sm font-medium text-slate-800">
+                        Remember Me
+                    </label>
+                </div>
+
+                <button class="btn-primary mt-6 w-full" type="submit">
+                    Log In
+                </button>
+            </form>
+
+            <div class="pt-8 text-center">
+                <p class="text-sm">
+                    Don’t have an account?
+                    <a href="/Auth/Register" class="ml-1 text-sm font-semibold text-blue-accent">
+                        Sign Up
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+@await Html.PartialAsync("_ValidationScripts")
+
