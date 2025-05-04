@@ -1,9 +1,15 @@
-﻿@* Needs to be updated to actually be functional. *@
-<nav>
+﻿<nav>
     <ul class="flex items-center gap-4 text-slate-500 font-bold text-sm uppercase">
-        <li class="text-blue-accent"><a href="">All [<span>10</span>]</a></li>
-        <li><a href="">STARTED [<span>8</span>]</a></li>
-        <li><a href="">COMPLETED [<span>2</span>]</a></li>
+        <li class="@(ViewBag.Filter == null ? "text-blue-accent" : "")">
+            <a asp-controller="Project" asp-action="Dashboard">All [<span>@ViewBag.TotalCount</span>]</a>
+        </li>
+        <li class="@(ViewBag.Filter == "Started" ? "text-blue-accent" : "")">
+            <a asp-controller="Project" asp-action="Dashboard" asp-route-status="Started">Started [<span>@ViewBag.StartedCount</span>]</a>
+        </li>
+        <li class="@(ViewBag.Filter == "Completed" ? "text-blue-accent" : "")">
+            <a asp-controller="Project" asp-action="Dashboard" asp-route-status="Completed">Completed [<span>@ViewBag.CompletedCount</span>]</a>
+        </li>
     </ul>
 </nav>
 <hr class="my-2 border-slate-300" />
+

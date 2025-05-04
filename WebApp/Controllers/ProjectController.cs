@@ -10,19 +10,32 @@ public class ProjectController(ProjectService projectService, UserService userSe
     private readonly UserService _userService = userService;
 
     // GET
-
-    public async Task<IActionResult> Dashboard()
+    //This method is used to display the dashboard with all projects. it has been rewritten several times with the help of ChatGPT4o to include everything needed.
+    public async Task<IActionResult> Dashboard(string? status)
     {
         var user = await _userService.GetCurrentUserAsync(User);
         if (user == null)
-            return Unauthorized(); // Or redirect to login
+            return Unauthorized();
 
-        var viewModel = new TeamMemberDisplay(user);
-        ViewData["CurrentUser"] = viewModel;
+        ViewData["CurrentUser"] = new TeamMemberDisplay(user);
 
-        var projectCards = await _projectService.GetAllProjectsAsync();
-        return View(projectCards);
+        var allProjects = await _projectService.GetAllProjectsAsync();
+
+        var filteredProjects = status switch
+        {
+            "Started" => allProjects.Where(p => p.Status == "Started").ToList(),
+            "Completed" => allProjects.Where(p => p.Status == "Completed").ToList(),
+            _ => allProjects
+        };
+
+        ViewBag.Filter = status;
+        ViewBag.TotalCount = allProjects.Count;
+        ViewBag.StartedCount = allProjects.Count(p => p.Status == "Started");
+        ViewBag.CompletedCount = allProjects.Count(p => p.Status == "Completed");
+
+        return View(filteredProjects);
     }
+
     public IActionResult Add()
     {
         return View(new ProjectFormModel
