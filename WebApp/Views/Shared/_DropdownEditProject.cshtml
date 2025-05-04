@@ -18,13 +18,6 @@
         <button class="open-edit-project-modal flex li-item bg-white"
             data-popover-nested="true"
             type="button">
-            data-project-id="@Model.ProjectId"
-            data-project-name="@Model.ProjectName"
-            data-client-name="@Model.ClientName"
-            data-description="@Model.Description"
-            data-start-date="@Model.StartDate.ToString("yyyy-MM-dd")"
-            data-end-date="@Model.EndDate.ToString("yyyy-MM-dd")"
-            data-budget="@Model.Budget">
             <i class="fa-solid fa-pen-line"></i>
             <p class="text-slate-800 font-medium ml-4">
                 Edit
@@ -41,13 +34,18 @@
         </form>
     </li>
     <li role="menuitem">
-        <button type="button" class="flex li-item bg-white">
-            <i class="fa-solid fa-trash-can text-red-500"></i>
-            <p class="text-red-500 font-medium ml-4">
-                Delete Project
-            </p>
-        </button>
+        <form asp-controller="Project" asp-action="Delete" method="post" onsubmit="return confirm('Are you sure you want to delete this project?');">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.ProjectId" />
+            <button type="submit" class="flex li-item bg-white">
+                <i class="fa-solid fa-trash-can text-red-500"></i>
+                <p class="text-red-500 font-medium ml-4">
+                    Delete Project
+                </p>
+            </button>
+        </form>
     </li>
+
 </ul>
 
 @await Html.PartialAsync("_EditProjectModal", new EditProjectFormModel())

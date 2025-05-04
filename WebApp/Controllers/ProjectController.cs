@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApp.Models.ViewModels;
 using WebApp.Services;
 
 namespace WebApp.Controllers;
 
+[Authorize]
 public class ProjectController(ProjectService projectService, UserService userService) : Controller
 {
     private readonly ProjectService _projectService = projectService;
@@ -90,6 +92,14 @@ public class ProjectController(ProjectService projectService, UserService userSe
     public async Task<IActionResult> MarkAsCompleted(int projectId)
     {
         await _projectService.MarkProjectAsCompletedAsync(projectId);
+        return RedirectToAction("Dashboard");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _projectService.DeleteProjectAsync(id);
         return RedirectToAction("Dashboard");
     }
 }
