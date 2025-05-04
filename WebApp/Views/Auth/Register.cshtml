@@ -12,6 +12,16 @@
             </h1>
 
             <form method="post" asp-controller="Auth" asp-action="Register" class="flex flex-col gap-4" novalidate>
+            @Html.AntiForgeryToken()
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="text-red-500 text-sm mb-2">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p>@error.ErrorMessage</p>
+                    }
+                </div>
+            }
                 <div class="w-full">
                     <label asp-for="FirstName" class="block mb-2 text-sm font-semibold">First Name</label>
                     <input asp-for="FirstName" class="text-input w-full" placeholder="Your first name" />

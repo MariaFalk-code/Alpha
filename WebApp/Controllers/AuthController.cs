@@ -28,20 +28,18 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Register(RegisterFormModel model)
         {
             if (!ModelState.IsValid)
-                return View(model); // Returns the full Register.cshtml page with errors
+                return View(model);
 
             var result = await _userService.CreateAsync(model);
 
-            if (result == 200)
+            if (result.Succeeded)
                 return RedirectToAction("Dashboard", "Project");
 
-            if (result == 409)
+            foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("Email", "An account with this email already exists.");
-                return View(model);
+                ModelState.AddModelError(string.Empty, error.Description);
             }
 
-            ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again.");
             return View(model);
         }
 
@@ -56,7 +54,7 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Login(LoginFormModel model)
         {
             if (!ModelState.IsValid)
-                return View(model);
+                return View(model); // re-render the page with client-side errors
 
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
@@ -65,7 +63,8 @@ namespace WebApp.Controllers
                 return View(model);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(
+                user, model.Password, model.RememberMe, lockoutOnFailure: false);
 
             if (result.Succeeded)
                 return RedirectToAction("Dashboard", "Project");
@@ -73,6 +72,7 @@ namespace WebApp.Controllers
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View(model);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

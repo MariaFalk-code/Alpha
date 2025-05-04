@@ -15,11 +15,17 @@ public class UserService(UserManager<AppUser> userManager, SignInManager<AppUser
         return await _userManager.GetUserAsync(userPrincipal);
     }
 
-    public async Task<int> CreateAsync(RegisterFormModel model)
+    public async Task<IdentityResult> CreateAsync(RegisterFormModel model)
     {
         if (await _userManager.FindByEmailAsync(model.Email) != null)
         {
-            return 409; // Conflict - user already exists
+            var duplicateResult = IdentityResult.Failed(new IdentityError
+            {
+                Code = "DuplicateEmail",
+                Description = "An account with this email already exists."
+            });
+
+            return duplicateResult;
         }
 
         var user = new AppUser
@@ -34,10 +40,10 @@ public class UserService(UserManager<AppUser> userManager, SignInManager<AppUser
         if (result.Succeeded)
         {
             await _signInManager.SignInAsync(user, isPersistent: false);
-            return 200; // Success!
         }
 
-        return 500; // Something went wrong
+        return result;
     }
+
 }
 
