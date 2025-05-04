@@ -75,13 +75,13 @@ public class ProjectService
                     FirstName = tm.FirstName,
                     LastName = tm.LastName
                 }).ToList()
-            });
+            }).ToList();
         }
 
-    await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
-    return viewModels;
-}
+        return viewModels;
+    }
 
     public async Task MarkProjectAsCompletedAsync(Guid id)
     {

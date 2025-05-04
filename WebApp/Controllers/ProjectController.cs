@@ -20,7 +20,11 @@ public class ProjectController : Controller
     }
     public IActionResult Add()
     {
-        return View(new ProjectFormModel());
+        return View(new ProjectFormModel
+        {
+            StartDate = DateTime.Today,
+            EndDate = DateTime.Today.AddDays(30)
+        });
     }
     public async Task<IActionResult> Edit(Guid id)
     {
@@ -41,7 +45,6 @@ public class ProjectController : Controller
         };
 
         return PartialView("_EditProjectModal", model);
-
     }
 
     //POST
@@ -49,7 +52,7 @@ public class ProjectController : Controller
     public async Task<IActionResult> Add(ProjectFormModel model)
     {
         if (!ModelState.IsValid)
-            return ViewComponent("_AddProjectModal", model);
+            return PartialView("_AddProjectModal", model);
         
         await _projectService.AddProjectAsync(model);
 
@@ -59,7 +62,7 @@ public class ProjectController : Controller
     public async Task<IActionResult> Edit(EditProjectFormModel model)
     {
         if (!ModelState.IsValid)
-            return ViewComponent("_EditProjectModal", model);
+            return PartialView("_EditProjectModal", model);
 
         await _projectService.EditProjectAsync(model.ProjectId, model);
 

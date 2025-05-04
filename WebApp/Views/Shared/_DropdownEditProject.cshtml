@@ -1,4 +1,5 @@
-﻿@model WebApp.Models.ViewModels.ProjectCard
+﻿@using WebApp.Models.ViewModels
+@model WebApp.Models.ViewModels.ProjectCard
 
 @* Base code for drowdown from Material Tailwind. Modified to fit the design of the project. *@
 <button data-popover-target="edit-project-menu"
@@ -49,4 +50,4 @@
     </li>
 </ul>
 
-@await Html.PartialAsync("_EditProjectModal")
+@await Html.PartialAsync("_EditProjectModal", new EditProjectFormModel())

@@ -12,6 +12,6 @@ public class ProjectCard
     public DateTime EndDate { get; set; }
     public string Status { get; set; } = null!;
     public decimal Budget { get; set; }
-    public string Deadline => CalculateDeadline.GetDeadline(StartDate, EndDate);
+    public string Deadline => CalculateDeadline.GetDeadline(EndDate);
     public List<TeamMemberDisplay> TeamMembers { get; set; } = new();
 }

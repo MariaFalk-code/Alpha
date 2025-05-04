@@ -3,7 +3,7 @@
 //ChatGPT4o wrote this to easily calculate the project deadline.
 public static class CalculateDeadline
 {
-    public static string GetDeadline(DateTime startDate, DateTime endDate)
+    public static string GetDeadline(DateTime endDate)
     {
         var now = DateTime.Now;
         var daysLeft = (endDate.Date - now.Date).Days;
