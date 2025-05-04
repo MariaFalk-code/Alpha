@@ -7,7 +7,7 @@
 <div class="relative mx-auto w-full max-w-[24rem] sm:max-w-[32rem] my-12 rounded-lg  shadow-sm">
 
     <form asp-action="Add" asp-controller="Project" method="post" novalidate class="relative flex flex-col bg-white max-h-[90dvh] overflow-y-auto">
-
+        @Html.AntiForgeryToken()
         <div class="m-8 items-center flex justify-start">
             <h3 class="text-2xl font-bold text-slate-950">
                 Add Project
@@ -36,8 +36,8 @@
 
             <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
                 <label asp-for="Description" class="block mb-2 text-sm font-semibold text-slate-950">Description</label>
-                <div class="rich-text-editor min-h-[10rem] text-input" data-initial-content="@Html.Raw(Model.Description)"></div>
-                <input asp-for="Description" type="hidden" id="description" />
+                <div class="rich-text-editor min-h-[10rem] text-input"></div>
+                <input asp-for="Description" type="hidden"/>
                 <span asp-validation-for="Description" class="text-red-500 text-sm mt-1 block"></span>
             </div>
 

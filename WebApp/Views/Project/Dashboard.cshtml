@@ -37,9 +37,3 @@ else
         <p class="text-lg">No projects available. Click “Add Project” to get started!</p>
     </div>
 }
-
-@await Html.PartialAsync("_AddProjectModal", new ProjectFormModel
-{
-    StartDate = DateTime.Today,
-    EndDate = DateTime.Today.AddDays(30)
-})
