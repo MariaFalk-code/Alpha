@@ -11,8 +11,9 @@ public class ProjectController(ProjectService projectService, UserService userSe
     private readonly ProjectService _projectService = projectService;
     private readonly UserService _userService = userService;
 
-    // GET
+
     //This method is used to display the dashboard with all projects. it has been rewritten several times with the help of ChatGPT4o to include everything needed.
+    [HttpGet]
     public async Task<IActionResult> Dashboard(string? status)
     {
         var user = await _userService.GetCurrentUserAsync(User);
@@ -38,6 +39,7 @@ public class ProjectController(ProjectService projectService, UserService userSe
         return View(filteredProjects);
     }
 
+    [HttpGet]
     public IActionResult Add()
     {
         return View(new ProjectFormModel
@@ -46,6 +48,8 @@ public class ProjectController(ProjectService projectService, UserService userSe
             EndDate = DateTime.Today.AddDays(30)
         });
     }
+
+    [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
         var project = await _projectService.GetProjectByIdAsync(id);
@@ -64,25 +68,26 @@ public class ProjectController(ProjectService projectService, UserService userSe
             Budget = project.Budget
         };
 
-        return PartialView("_EditProjectModal", model);
+        return View(model);
     }
 
-    //POST
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Add(ProjectFormModel model)
     {
         if (!ModelState.IsValid)
-            return PartialView("_AddProjectModal", model);
-        
-        await _projectService.AddProjectAsync(model);
+            return View(model);
 
+        await _projectService.AddProjectAsync(model);
         return RedirectToAction("Dashboard");
     }
+
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(EditProjectFormModel model)
     {
         if (!ModelState.IsValid)
-            return PartialView("_EditProjectModal", model);
+            return View(model);
 
         await _projectService.EditProjectAsync(model.ProjectId, model);
 

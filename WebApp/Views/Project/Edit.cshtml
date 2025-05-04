@@ -1,0 +1,74 @@
+﻿@model WebApp.Models.ViewModels.EditProjectFormModel
+@{
+    ViewData["Title"] = "Edit Project";
+    Layout = "_Layout_Centered";
+}
+
+<div class="relative mx-auto w-full max-w-[24rem] sm:max-w-[32rem] my-12 rounded-lg shadow-sm">
+
+    <form asp-action="Edit" asp-controller="Project" method="post" novalidate class="relative flex flex-col bg-white max-h-[90dvh] overflow-y-auto">
+
+        <div class="m-8 items-center flex justify-start">
+            <h3 class="text-2xl font-bold text-slate-950">
+                Edit Project
+            </h3>
+        </div>
+
+        <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px] flex items-center justify-center">
+            <div class="img-bg-square h-32 w-32">
+                <img src="~/images/Vector6.svg" asp-append-version="true" alt="project symbol" class="inline-block w-20 h-20 pt-2" />
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-4 p-6">
+            <input type="hidden" asp-for="ProjectId" />
+
+            <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
+                <label asp-for="ProjectName" class="block mb-2 text-sm text-slate-950">Project Name</label>
+                <input asp-for="ProjectName" class="text-input" placeholder="Project Name" />
+                <span asp-validation-for="ProjectName" class="text-red-500 text-sm mt-1 block"></span>
+            </div>
+
+            <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
+                <label asp-for="ClientName" class="block mb-2 text-sm text-slate-950">Client Name</label>
+                <input asp-for="ClientName" class="text-input" placeholder="Client Name" />
+                <span asp-validation-for="ClientName" class="text-red-500 text-sm mt-1 block"></span>
+            </div>
+
+            <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
+                <label asp-for="Description" class="block mb-2 text-sm text-slate-950">Description</label>
+                <div class="rich-text-editor min-h-[10rem] text-input" data-initial-content="@Html.Raw(Model.Description)"></div>
+                <input asp-for="Description" type="hidden" />
+                <span asp-validation-for="Description" class="text-red-500 text-sm mt-1 block"></span>
+            </div>
+
+            <div class="flex gap-4 w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
+                <div class="w-full max-w-sm min-w-[100px] sm:max-w-md sm:min-w-[150px]">
+                    <label asp-for="StartDate" class="block mb-2 text-sm font-semibold text-slate-950">Start Date</label>
+                    <input asp-for="StartDate" type="date" class="text-input" />
+                    <span asp-validation-for="StartDate" class="text-red-500 text-sm mt-1 block"></span>
+                </div>
+                <div class="w-full max-w-sm min-w-[100px] sm:max-w-md sm:min-w-[150px]">
+                    <label asp-for="EndDate" class="block mb-2 text-sm font-semibold text-slate-950">End Date</label>
+                    <input asp-for="EndDate" type="date" class="text-input" />
+                    <span asp-validation-for="EndDate" class="text-red-500 text-sm mt-1 block"></span>
+                </div>
+            </div>
+
+            <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
+                <label asp-for="Budget" class="block mb-2 text-sm text-slate-950">Budget</label>
+                <input asp-for="Budget" type="number" class="text-input" placeholder="Budget" />
+                <span asp-validation-for="Budget" class="text-red-500 text-sm mt-1 block"></span>
+            </div>
+        </div>
+
+        <div class="p-6 pt-8">
+            <button class="btn-primary" type="submit">
+                Save Changes
+            </button>
+        </div>
+    </form>
+</div>
+
+@await Html.PartialAsync("_ValidationScripts")
+
