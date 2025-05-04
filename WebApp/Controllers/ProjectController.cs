@@ -107,5 +107,12 @@ public class ProjectController(ProjectService projectService, UserService userSe
         await _projectService.DeleteProjectAsync(id);
         return RedirectToAction("Dashboard");
     }
+
+    [HttpGet]
+    public IActionResult UnderDevelopment()
+    {
+        return View();
+
+    }
 }
  

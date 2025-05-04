@@ -16,7 +16,8 @@
     </div>
 
     <p class="text-sm text-slate-600 mt-4 overflow-hidden">
-        @Model.Description
+        @Html.Raw(Model.Description)
+
     </p>
 
     @* Needs added functionality to change color based on deadline *@
