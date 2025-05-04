@@ -1,4 +1,6 @@
-﻿@* Basecode for modal from Material Tailwind, modified to fit the design of the project. *@
+﻿@model WebApp.Models.ViewModels.LoginFormModel
+
+@* Basecode for modal from Material Tailwind, modified to fit the design of the project. *@
 <div data-dialog-backdrop="sign-in-dialog"
      data-dialog-backdrop-close="true"
      class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
@@ -15,22 +17,25 @@
             <form method="post" asp-controller="Auth" asp-action="Login" novalidate class="flex flex-col gap-4 py-8 px-24">
 
                 <div class="w-full min-w-[200px]">
-                    <label class="block mb-2 text-sm font-semibold">
-                        Email
-                    </label>
-                    <input type="email" class="text-input" placeholder="Your email address" />
+                    <label asp-for="Email" class="block mb-2 text-sm font-semibold"></label>
+                    <input asp-for="Email" class="text-input" placeholder="Your email address" />
+                    <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
                 </div>
 
-                <div class="w-full min-w-[200px] mb-2">
-                    <label class="block mb-2 text-sm font-semibold">
-                        Password
-                    </label>
-                    <input type="password" class="text-input" placeholder="Enter your password" />
+                <div class="w-full min-w-[200px]">
+                    <label asp-for="Password" class="block mb-2 text-sm font-semibold"></label>
+                    <input asp-for="Password" class="text-input" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
                 </div>
 
-                @await Html.PartialAsync("_Checkbox", ("rememberMe", "Remember Me", false))
+                <div class="flex items-start">
+                    <input asp-for="RememberMe" type="checkbox" class="mr-2 mt-1 accent-blue-500" />
+                    <label asp-for="RememberMe" class="text-sm font-medium text-slate-800">
+                        Remember Me
+                    </label>
+                </div>
 
-                <button class="btn-primary mt-6" type="button">
+                <button class="btn-primary mt-6" type="submit">
                     Log In
                 </button>
             </form>
