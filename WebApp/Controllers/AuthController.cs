@@ -70,10 +70,12 @@ namespace WebApp.Controllers
             return PartialView("_LoginModal", model);
         }
 
-    public IActionResult Logout()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
         {
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index");
         }
     }
-}
 
