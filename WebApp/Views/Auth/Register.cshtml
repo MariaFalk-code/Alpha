@@ -55,7 +55,7 @@
                 <div class="flex items-start">
                     <input asp-for="TermsAccepted" class="mr-2 mt-1 accent-blue-500" type="checkbox" />
                     <label asp-for="TermsAccepted" class="text-sm font-medium text-slate-800">
-                    I accept <a class="text-blue-accent">Terms and Conditions</a>
+                    I accept <button data-dialog-target="modal" class="text-blue-accent" type="button">Terms and Conditions</button>
                     </label>
                 </div>
                 <span asp-validation-for="TermsAccepted" class="text-red-500 text-sm"></span>
@@ -77,4 +77,5 @@
     </section>
 
 @await Html.PartialAsync("_ValidationScripts")
+@await Html.PartialAsync("_TextModal")
 
