@@ -19,12 +19,13 @@
         @Model.Description
     </p>
 
+    @* Needs added functionality to change color based on deadline *@
     <div class="flex items-center justify-between mt-6">
         <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-md"><span>@Model.Deadline</span></span>
         <div class="flex -space-x-2">
             @foreach (var member in Model.TeamMembers)
             {
-                <img src="@member" class="w-6 h-6 rounded-full border-2 border-white" />
+                <img src="@member.ProfileImageUrl" class="w-6 h-6 rounded-full border-2 border-white" />
             }
         </div>
     </div>

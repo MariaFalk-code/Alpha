@@ -4,17 +4,22 @@ using WebApp.Services;
 
 namespace WebApp.Controllers;
 
-public class ProjectController : Controller
+public class ProjectController(ProjectService projectService, UserService userService) : Controller
 {
-    private readonly ProjectService _projectService;
+    private readonly ProjectService _projectService = projectService;
+    private readonly UserService _userService = userService;
 
-    public ProjectController(ProjectService projectService)
-    {
-        _projectService = projectService;
-    }
     // GET
+
     public async Task<IActionResult> Dashboard()
     {
+        var user = await _userService.GetCurrentUserAsync(User);
+        if (user == null)
+            return Unauthorized(); // Or redirect to login
+
+        var viewModel = new TeamMemberDisplay(user);
+        ViewData["CurrentUser"] = viewModel;
+
         var projectCards = await _projectService.GetAllProjectsAsync();
         return View(projectCards);
     }

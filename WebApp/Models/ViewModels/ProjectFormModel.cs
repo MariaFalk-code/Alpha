@@ -25,11 +25,11 @@ namespace WebApp.Models.ViewModels
         [Range(0.01, double.MaxValue, ErrorMessage = "Budget must be greater than 0.")]
         public decimal Budget { get; set; }
 
-        public List<Guid> SelectedTeamMemberIds { get; set; } = new();
+        public List<string> SelectedTeamMemberIds { get; set; } = new();
     }
 
     public class EditProjectFormModel : ProjectFormModel
     {
-        public Guid ProjectId { get; set; }
+        public int ProjectId { get; set; }
     }
 }

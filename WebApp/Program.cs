@@ -2,7 +2,11 @@ using WebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
+
 builder.Services.AddScoped<ProjectService>();
+builder.Services.AddScoped<UserService>();
 
 
 

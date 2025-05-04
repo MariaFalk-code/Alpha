@@ -1,6 +1,16 @@
-﻿@* Base code for drowdown from Material Tailwind. Modified to fit the design of the project. *@
+﻿@using WebApp.Models.ViewModels
+@{
+    var currentUser = ViewData["CurrentUser"] as TeamMemberDisplay;
+}
+@if (currentUser != null)
+{
+    <img src="@currentUser.ProfileImageUrl" alt="User avatar" class="img-rounded dropdown-account ml-8" />
+    <p class="text-slate-800 font-medium ml-2">@currentUser.FullName</p>
+}
+
+@* Base code for drowdown from Material Tailwind. Modified to fit the design of the project. *@
 <img alt="user avatar"
-     src="/images/Avatar1.jpg"
+     src="@Model.ProfileImageUrl"
      class="relative img-rounded dropdown-account ml-8"
      data-popover-target="profile-menu" />
 <ul role="menu"
@@ -13,10 +23,10 @@
     <li role="menuitem"
         class="li-item bg-slate-100">
         <img alt="user avatar"
-             src="/images/Avatar1.jpg"
+             src="@Model.ProfileImageUrl"
              class="relative img-rounded" />
         <p class="text-slate-800 font-medium ml-2">
-            User Name
+            @Model.FullName
         </p>
     </li>
     <hr class="my-2 border-slate-200" role="menuitem" />
