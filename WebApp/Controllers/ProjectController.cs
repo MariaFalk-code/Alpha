@@ -31,7 +31,7 @@ public class ProjectController(ProjectService projectService, UserService userSe
             EndDate = DateTime.Today.AddDays(30)
         });
     }
-    public async Task<IActionResult> Edit(Guid id)
+    public async Task<IActionResult> Edit(int id)
     {
         var project = await _projectService.GetProjectByIdAsync(id);
         if (project == null)
@@ -74,7 +74,7 @@ public class ProjectController(ProjectService projectService, UserService userSe
         return RedirectToAction("Dashboard");
     }
     [HttpPost]
-    public async Task<IActionResult> MarkAsCompleted(Guid projectId)
+    public async Task<IActionResult> MarkAsCompleted(int projectId)
     {
         await _projectService.MarkProjectAsCompletedAsync(projectId);
         return RedirectToAction("Dashboard");
