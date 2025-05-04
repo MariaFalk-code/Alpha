@@ -27,6 +27,7 @@
                         Project Name
                     </label>
                     <input asp-for="ProjectName" data-target="edit-project-name" class="text-input" placeholder="Project Name" />
+					<span asp-validation-for="ProjectName" class="text-red-500 text-sm mt-1 block"></span>
                 </div>
 
                 <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
@@ -34,6 +35,7 @@
                         Client Name
                     </label>
                     <input asp-for="ClientName" data-target="edit-client-name" class="text-input" placeholder="Client Name" />
+					<span asp-validation-for="ClientName" class="text-red-500 text-sm mt-1 block"></span>
                 </div>
 
                 <div class="w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
@@ -45,6 +47,7 @@
                          data-target="edit-description"
                          data-initial-content="@Html.Raw(Model.Description)">
                     </div>
+					<span asp-validation-for="Description" class="text-red-500 text-sm mt-1 block"></span>
                 </div>
 
                 <div class="flex gap-4 w-full max-w-sm min-w-[200px] sm:max-w-md sm:min-w-[300px]">
@@ -53,12 +56,14 @@
                             Start Date
                         </label>
                         <input asp-for="StartDate" data-target="edit-start-date" type="date" class="text-input" />
+						<span asp-validation-for="StartDate" class="text-red-500 text-sm mt-1 block"></span>
                     </div>
                     <div class="w-full max-w-sm min-w-[100px] sm:max-w-md sm:min-w-[150px]">
                         <label asp-for="EndDate" class="block mb-2 text-sm font-semibold text-slate-950">
                             End Date
                         </label>
                         <input asp-for="EndDate" data-target="edit-end-date" type="date" class="text-input" />
+						<span asp-validation-for="EndDate" class="text-red-500 text-sm mt-1 block"></span>
                     </div>
                 </div>
 
@@ -67,6 +72,7 @@
                         Budget
                     </label>
                     <input asp-for="Budget" data-target="edit-budget" type="number" class="text-input" placeholder="Budget" />
+					<span asp-validation-for="Budget" class="text-red-500 text-sm mt-1 block"></span>
                 </div>
             </div>
             <div class="p-6 pt-8">
